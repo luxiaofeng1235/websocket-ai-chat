@@ -1,0 +1,58 @@
+# @format
+
+services:
+  water:
+    container_name: water
+    image: hyperf/hyperf:7.4-alpine-v3.14-swoole
+    command:
+      - sh
+      - -c
+      - |
+        sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+        apk update
+        apk add ffmpeg
+        cd /opt/www
+        composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+        composer install
+        composer dump-autoload -o
+        php think run
+    volumes:
+      - ./:/opt/www
+      - ./runtime:/tmp/runtime
+    ports:
+      - 28000:8000
+      - 40211:40211
+    networks:
+      - water
+
+  mysql:
+    container_name: mysql-water
+    image: mysql:8.4.2
+    environment:
+      TZ: Asia/Shanghai
+      LANG: C.UTF-8
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: water_proff
+      MYSQL_USER: water_proff
+      MYSQL_PASSWORD: CajwmLEKGtWRETCp
+    ports:
+      - 23306:3306
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/log:/var/log/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - water
+
+  redis:
+    container_name: redis-water
+    image: redis:7.4-alpine
+    ports:
+      - 26379:6379
+    networks:
+      - water
+
+networks:
+  water:
+    driver: bridge

@@ -23,7 +23,13 @@
         "php": ">=7.1.0",
         "topthink/framework": "^6.1.0",
         "topthink/think-orm": "^2.0",
-        "topthink/think-filesystem": "^1.0"
+        "topthink/think-filesystem": "^1.0",
+        "topthink/think-swoole": "^3.1",
+        "ext-openssl": "*",
+        "ext-curl": "*",
+        "nesbot/carbon": "^2.71",
+        "guzzlehttp/guzzle": "^7.0",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

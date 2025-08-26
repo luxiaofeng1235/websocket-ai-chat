@@ -20,17 +20,10 @@
         }
     ],
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.1.0",
         "topthink/framework": "^6.1.0",
         "topthink/think-orm": "^2.0",
-        "topthink/think-filesystem": "^1.0",
-        "w7corp/easywechat": "^5.0",
-        "qcloud/cos-sdk-v5": "^2.2",
-        "phpoffice/phpspreadsheet": "^1.19",
-        "dompdf/dompdf": "^1.0",
-        "predis/predis": "^1.1",
-        "guzzlehttp/guzzle": "^7.0",
-        "tencentcloud/essbasic": "^3.0"
+        "topthink/think-filesystem": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",
